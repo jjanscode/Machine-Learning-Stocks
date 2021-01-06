@@ -13,13 +13,27 @@ For this study, 150 Twitter accounts self identified as day and swing traders ea
 Figure 1. Block diagram of the data collection and feature calculation process. 
   
     
-![alt text](https://github.com/jjanscode/Machine-Learning-Stocks/blob/main/Feature%20Summary.png) 
+![alt text](https://github.com/jjanscode/Machine-Learning-Stocks/blob/main/Feature%20Summary.png)  
 Table 1. Summary of features included in machine learning model.  
 Table 2. INSERT CLASSIFIER TABLE!!!!!!!!!!!!!!!!!!!!!  
   
   
   
   
-## Classifier Data Visualization
-The microcap and small cap stocks mentioned Sunday night by the population of day traders have proven to have large weekly price movements. The median maximum weekly price movement above Monday opening price was 8.29% and the median maximum weekly price movement below Monday opening price was 9.09% across an n = 712 dataset collected between 7/26/2020 and 12/13/2020. 
+## Classifier Data
+!!!!!!!!!INSERT CLASSIFIER DESCRIPTOR TABLE 
+The microcap and small cap stocks mentioned Sunday night by the population of day traders proved to have large weekly price movements. The median maximum weekly price movement above Monday opening price was 8.29% (Figure 3) and the median maximum weekly price movement below Monday opening price was 9.09% (Figure 4) across an n = 712 dataset collected between 7/26/2020 and 12/13/2020.  
 
+![alt text](https://github.com/jjanscode/Machine-Learning-Stocks/blob/main/Max%20Up%20Classifiers.png)   
+Figure 3. Weekly maximum price classifier histogram for data set. Calculated with the file 'DataHistograms.ipynb'.  
+Note: 40% bin represents all weekly classifiers that are 40% or greater.  
+
+![alt text](https://github.com/jjanscode/Machine-Learning-Stocks/blob/main/Max%20Down%20Classifiers.png)   
+Figure 3. Weekly minimum classifier histogram for data set. Calculated with the file 'DataHistograms.ipynb'.  
+Note: 40% bin represents all weekly classifiers that are 40% or greater.  
+  
+  
+  
+  
+## Machine Learning Algorithm Performance
+Upon investigation of various machine learning algorithms available in the Sci-Kit Learn Python package, it was determined that a random forest algorithm performed the best at accurately classifying test cases and not overfitting for some classifiers. 
