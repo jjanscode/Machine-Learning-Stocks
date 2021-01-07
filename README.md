@@ -22,7 +22,7 @@ Table 2. INSERT CLASSIFIER TABLE!!!!!!!!!!!!!!!!!!!!!
   
 ## Classifier Data
 !!!!!!!!!INSERT CLASSIFIER DESCRIPTOR TABLE 
-The microcap and small cap stocks mentioned Sunday night by the population of day traders proved to have large weekly price movements. The median maximum weekly price movement above Monday opening price was 8.29% (Figure 3) and the median maximum weekly price movement below Monday opening price was 9.09% (Figure 4) across an n = 712 dataset collected between 7/26/2020 and 12/13/2020.  
+The microcap and small cap stocks mentioned Sunday night by the population of day traders proved to have large weekly price movements. The median maximum weekly price movement above Monday opening price was 8.29% (Figure 3) and the median maximum weekly price movement below Monday opening price was 9.09% (Figure 4) across an n = 712 dataset collected between 7/26/2020 and 12/13/2020 (source file:'Machine Learning Set V2.xlsx').  
 
 ![alt text](https://github.com/jjanscode/Machine-Learning-Stocks/blob/main/Max%20Up%20Classifiers.png)   
 Figure 3. Weekly maximum price classifier histogram for data set. Calculated with the file 'DataHistograms.ipynb'.  
@@ -36,4 +36,19 @@ Note: 40% bin represents all weekly classifiers that are 40% or greater.
   
   
 ## Machine Learning Algorithm Performance
-Upon investigation of various machine learning algorithms available in the Sci-Kit Learn Python package, it was determined that a random forest algorithm performed the best at accurately classifying test cases and not overfitting for some classifiers. 
+Upon investigation of various machine learning algorithms available in the Sci-Kit Learn Python package, it was determined that a random forest algorithm performed the best at both accuractely classifying the data and minimizing overfitting.  
+The random forest algorithm incorporated n=100 estimators and methods to control for overfitting. Only 8 out of the 16 features from the machine learning set were used to train a given estimator, and the minimum number of samples allowed in a leaf of the tree was set to 15.  
+In order to systematically determine the performance of the random forest algorithm, two separate sensitivity sweeps were performed across the two classifiers (maximum price movement and minimum price movement).  
+In this study, 18 different classifier thresholds between 0 and 41% were established for both the maximum price movement and minimum price movement classifiers. For each classifier threshold a binary classification system was used to label the data, with a '1' indicating the classifier for the data point was above the classifier threshold, and a '0' indicating the classifier for the data point was below the classifier threshold.  
+To establish a robust metric of algorithm performance at a given classifier level, the random forest algorithm was trained 100 separate times using a different random seed to split the data set into training and testing groups. The training and testing accuracy of the algorithm across the 100 iterations was tracked (Figure 4).  
+![alt text](https://github.com/jjanscode/Machine-Learning-Stocks/blob/main/Four%20Down%20Random%20Seed%20Sweep.png)  
+Figure 4. Training and testing accuracy of a 4% thresholded minimum price classifier across 100 different random seeds (associated code file: Machine Learning Stocks Sensitivity Testing.ipynb).  
+  
+The median training accuracy, testing accuracy, standard deviation in training accuracy, and standard deviation in testing accuracy for the random forest algorithm across the 18 classifier thresholds for both types of classifiers were computed and plotted (Figure 5, Figure 6).  
+![alt text](https://github.com/jjanscode/Machine-Learning-Stocks/blob/main/Max%20Up%20Sensitivity.png)  
+Figure 5. Median maximum price movement classifier threshold sensitivity sweep using an n=100 estimators random forest machine learning algorithm trained using 100 different random seeds.  
+  
+![alt text](https://github.com/jjanscode/Machine-Learning-Stocks/blob/main/Max%20Down%20Sensitivity.png)  
+Figure 6. Median training and testing accuracy of the minimum price movement classifier across thresholds betwen 0% and 41% using an n=100 estimators random forest machine learning algorithm trained using 100 different random seeds. 
+  
+  
