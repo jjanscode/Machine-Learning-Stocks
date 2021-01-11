@@ -73,6 +73,6 @@ Table 3. Summary of machine learning based scoring system, associated code file:
    
 
 Additional scoring schemes are expected to incorporate factors for overfitting, and different permutations of rules for adding/subtracting/no action points scoring. These scoring schemes will undergo an evaluation period of a month, during which the machiune learning percentile prediction versus weekly stock performance for each scheme will be evaluated. Trends identified during this period will be used to to formulate a rules based approach for buying and selling equities. Different rules based approaches will be evaluated using the yfinance Python module on minutely price data to simulate deploying the buying and selling paradigm in real time (Figure 8). 
- __![alt text](https://github.com/jjanscode/Machine-Learning-Stocks/blob/main/Entire%20Block%20Diagram.png)  
+ ![alt text](https://github.com/jjanscode/Machine-Learning-Stocks/blob/main/Entire%20Block%20Diagram.png)  
 __Figure 8. Summary of the entire data collection and evaluation process.__
  
