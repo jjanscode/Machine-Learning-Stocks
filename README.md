@@ -82,3 +82,5 @@ In addition to this ongoing work, planned future work will include the following
   + Perform sensitivity analysis of feature importance scores across binary classifier thresholds for both classifier sets, investigate the removal of features determined to be universally unimportant.       
   + Continue working to automate all features of data collection process.   
   + Investigate establishing stricter stock filtering criteria so as to create a more homogenous dataset. Investigate the impact of this on machine learning model performance. 
+    + Revisit evaluating the performance of the random forest algorithm on multiclass labeled data. 
+
