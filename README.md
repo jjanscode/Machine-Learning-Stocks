@@ -31,7 +31,7 @@ __Table 1. Summary of features included in machine learning model.__
 __Table 2. Summary of classifier sets included in machine learning model.__  
   
   
-The microcap and small cap stocks mentioned Sunday night by the population of day traders proved to have large weekly price movements. The median maximum weekly price movement above Monday opening price was 8.29% (Figure 3) and the median maximum weekly price movement below Monday opening price was 9.09% (Figure 4) across an n = 712 dataset collected between 7/26/2020 and 12/13/2020 (source file:'Machine Learning Set V2.xlsx').  
+The microcap and small cap stocks mentioned Sunday night by the population of day traders proved to have large weekly price movements. The median maximum weekly price movement above Monday opening price was 8.29% (Figure 3) and the median maximum weekly price movement below Monday opening price was 9.09% (Figure 4) across an n = 712 dataset collected between 7/26/2020 and 12/06/2020 (source file:'Machine Learning Set V2.xlsx').  
   
 
 ![alt text](https://github.com/jjanscode/Machine-Learning-Stocks/blob/main/Max%20Up%20Classifiers.png)   
