@@ -27,7 +27,7 @@ __Table 1. Summary of features included in machine learning model.__
 ## Classifier Data
  At the end of the trading week, two separate groups of classifier data were collected--  maximum price movement above Monday opening price for a given stock (maximum price movement classifier), and the minimum price movement below Monday opening price for a given stock (minimum price movement classifier) (Table 2). The classifiers were then matched with the associated 16 features and were used to train various different machine learning algorithms. 
 
- ![alt text](https://github.com/jjanscode/Machine-Learning-Stocks/blob/main/Classifier%20Table.png)  
+ ![alt text](https://github.com/jjanscode/Machine-Learning-Stocks/blob/main/Github%20Machine%20Learning%20Images/Classifier%20Table.png)  
 __Table 2. Summary of classifier sets included in machine learning model.__  
   
   
