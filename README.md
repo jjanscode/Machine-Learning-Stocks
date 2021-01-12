@@ -5,7 +5,7 @@ Each individual trader in this population discusses multiple different stocks si
 
 It was determined that in order to successfully operate in this area of stocks, implementing a rigid system to process and make decisions on this large amount of recommendations would be necessary. It was determined that implementing a machine learning model with associated automated data collection code would: 
   + Remove the human factors involved in evaluating these stocks.    
-  + RRemove the human factors involved in trading these stocks.  
+  + Remove the human factors involved in trading these stocks.  
   + Greatly increase the volume of stocks evaluated.  
 
 ## Data Collection Methods and Machine Learning Model Feature Description
