@@ -9,7 +9,7 @@ It was determined that in order to successfully operate in this area of stocks, 
   + Greatly increase the volume of stocks evaluated.  
 
 ## Data Collection Methods and Machine Learning Model Feature Description
-For this study, 150 Twitter accounts self identified as day and swing traders each with greater than 1,000 followers were followed. It was observed that generally on Sundays this population of penny stock traders would discuss and recommend stocks they thought would perform well in the upcoming week. Using the TweePy module, code for collecting the number of times a stock was mentioned on this Sunday night timeline was written. The code was run late on Sunday nights, and then filtered excluding any stocks that were not available for trading on the WeBull stock trading application, or wer currently priced higher than $40 and had not been any lower than $10 in the past year. This to produced a list of all available microcap and small cap stocks mentioned by the trader population on Sundays. More code was written to collect data and calculate features on short volume, trading volume and pricing for this filtered list of stocks. These automatically calculated features were combined with additional macroeconmic indicators and weekly purchasing data. This resulted in a total of 16 features for each data point to be included in the machine learning model (Table 1).  
+For this study, 150 Twitter accounts self identified as day and swing traders each with greater than 1,000 followers were followed. It was observed that generally on Sundays this population of penny stock traders would discuss and recommend stocks they thought would perform well in the upcoming week. Using the TweePy module, code for collecting the number of times a stock was mentioned on this Sunday night timeline was written. The code was run late on Sunday nights and the resulting list was filtered to exclude stocks that were not available for trading on the WeBull stock trading application, were currently priced higher than $40, or had a 52 week minimum price greater than $10. This produced a list of mostly microcap and small cap stocks mentioned by the trader population on Sunday nights. More code was written to collect data and calculate features on short volume, trading volume and pricing for this filtered list of stocks. The automatically calculated features were combined with additional macroeconmic indicators and weekly purchasing data, resulting in a total of 16 features in the machine learning model (Table 1).  
   
 ![alt text](https://github.com/jjanscode/Machine-Learning-Stocks/blob/main/Feature%20Collection%20Block%20Diagram.png)  
 __Figure 1. Block diagram of the data collection and feature calculation process.__ 
@@ -25,7 +25,7 @@ __Table 1. Summary of features included in machine learning model.__
   
   
 ## Classifier Data
- At the end of the trading week, two separate groups of classifier data were collected-- the first classifier being the maximum price movement above Monday opening price for a given stock, and the second classifier being the minimum price movement below Monday opening price for a given stock (Table 2). The classifiers were then matched with the associated 16 features and were used to train various different machine learning algorithms. 
+ At the end of the trading week, two separate groups of classifier data were collected--  maximum price movement above Monday opening price for a given stock (maximum price movement classifier), and the minimum price movement below Monday opening price for a given stock (minimum price movement classifier) (Table 2). The classifiers were then matched with the associated 16 features and were used to train various different machine learning algorithms. 
 
  ![alt text](https://github.com/jjanscode/Machine-Learning-Stocks/blob/main/Classifier%20Table.png)  
 __Table 2. Summary of classifier sets included in machine learning model.__  
@@ -78,7 +78,7 @@ Additional scoring schemes are expected to incorporate factors for overfitting, 
 __Figure 8. Summary of the entire data collection and evaluation process.__  
 
  
-In addition to continuing to gather weekly data sets, future work will include the following investigations.  
+In addition to this ongoing work, planned future work will include the following investigations.  
   + Perform sensitivity analysis of feature importance scores across binary classifier thresholds for both classifier sets, investigate the removal of features determined to be universally unimportant.       
   + Continue working to automate all features of data collection process.   
   + Investigate establishing stricter stock filtering criteria so as to create a more homogenous dataset. Investigate the impact of this on machine learning model performance. 
