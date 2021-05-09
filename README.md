@@ -31,7 +31,7 @@ __Table 1. Summary of features included in machine learning model.__
 __Table 2. Summary of classifier sets included in machine learning model.__  
   
   
-The microcap and small cap stocks mentioned Sunday night by the population of day traders proved to have large weekly price movements. The median maximum weekly price movement above Monday opening price was 8.29% (Figure 3) and the median maximum weekly price movement below Monday opening price was 9.09% (Figure 4) across an n = 712 dataset collected between 7/26/2020 and 12/06/2020 (source file:'Machine Learning Set V2.xlsx').  
+The microcap and small cap stocks mentioned Sunday night by the population of day traders proved to have large weekly price movements. The median maximum weekly price movement above Monday opening price was 8.00% (Figure 3) and the median maximum weekly price movement below Monday opening price was 10.23% (Figure 4) across an n = 1758 dataset collected between 7/26/2020 and 4/25/2021 (source file:'Machine Learning Set V2.xlsx').  
   
 
 ![alt text](https://github.com/jjanscode/Machine-Learning-Stocks/blob/main/Github%20Machine%20Learning%20Images/Max%20Up%20Classifiers.png)   
@@ -64,10 +64,31 @@ Figure 7. Median minimum price movement classifier threshold sensitivity sweep u
   
    
 From this sensitivity test, it was determined that machine learning models trained on binary classifier thresholds between 0-4% and 17+% produced acceptable accuracies, whil not badly overfitting the data given the relatively small differences in training and testing accuracy (Figure 6, Figure 7).
-  
+
+## Feature Analysis
+To gain further insight into the importance of the various features included in the machine learning model, a sensitivity sweep of machine learning feature importance scores was performed for both the Max Up and Max Down classifier sets. A feature importance score is a decimal number between 0 and 1 produced by the machine learning model that indicates how important a given feature is in discriminating between the different groups of the classifier data. The feature importance scores for all of the features sum up to 1, with higher scores indiciating more importance. For this sensitivity test, each machine learning algorithm was trained 100 times with different random seeds each iteration, and the median feature importance scores were selected.   
+  __![alt text](https://github.com/jjanscode/Machine-Learning-Stocks/blob/main/Github%20Machine%20Learning%20Images/First%20Four%20Max%20Up%20Features.png) 
+ Figure 8. Feature importance sensitivity sweep for first four machine learning model features across maximum weekly upwards price movement classifier thresholds.__  
  
- ## Ongoing and Future Work 
-The best methods for assessing forward looking predictions made by trained forest algorithms and making purchasing decisions is being investigated. The current approach involves integrating predictions made from 16 separately trained machine learning algorithms into several differnet scoring schemes and concurrently evaluating them. One example of a scoring scheme can be seen in Table 3. In this scoring scheme, 8 different machine learning algorithms are trained with a different binary classifier cut off on the maximum price movement classifier set, and this process is repeated for the minimum price movement classifier set. The 16 different algorithms are then fed a matrix of stocks with the associated feature data and are asked to make a prediction on each stock. All of the predictions for a given stock are tracked and integrated into a scoring scheme. This particular scoring scheme initializes at a value of zero, and assesses points equal to the testing accuracy of the given algorithm based on the prediction made by the given algorithm (Table 3), giving higher weight to algorithms that have demonstrated to be more accurate. All of the machine learning stock scores are then normalized by the maximum possible score to produce a normalized percentile for easy week to week comparison, as new data will continue to be added to the machine learning set week to week and algorithm accuracies are likely to fluctuate.  
+  __![alt text](https://github.com/jjanscode/Machine-Learning-Stocks/blob/main/Github%20Machine%20Learning%20Images/Second%20Four%20Max%20Up%20Features.png) 
+ Figure 9. Feature importance sensitivity sweep for second four machine learning model features across maximum weekly upwards price movement classifier thresholds.__  
+ __![alt text](https://github.com/jjanscode/Machine-Learning-Stocks/blob/main/Github%20Machine%20Learning%20Images/Third%20Four%20Max%20Up%20Features.png)
+  Figure 10. Feature importance sensitivity sweep for third four machine learning model features across maximum weekly upwards price movement classifier thresholds.__  
+ 
+ __![alt text](https://github.com/jjanscode/Machine-Learning-Stocks/blob/main/Github%20Machine%20Learning%20Images/Last%20Four%20Max%20Up%20Features.png)
+ Figure 11. Feature importance sensitivity sweep for last four machine learning model features across maximum weekly upwards price movement classifier thresholds.__  
+ 
+  __![alt text](https://github.com/jjanscode/Machine-Learning-Stocks/blob/main/Github%20Machine%20Learning%20Images/Max%20Down%20First%20Four%20Features.png)
+Figure 12. Feature importance sensitivity sweep for first four machine learning model features across maximum weekly downwards price movement classifier thresholds.__  
+  __![alt text](https://github.com/jjanscode/Machine-Learning-Stocks/blob/main/Github%20Machine%20Learning%20Images/Max%20Down%20Second%20Four%20Features.png)
+ Figure 13. Feature importance sensitivity sweep for second four machine learning model features across maximum weekly downwards price movement classifier thresholds.__  
+  __![alt text](https://github.com/jjanscode/Machine-Learning-Stocks/blob/main/Github%20Machine%20Learning%20Images/Max%20Down%20Third%20Four%20Features.png)
+ Figure 14. Feature importance sensitivity sweep for third four machine learning model features across maximum weekly downwards price movement classifier thresholds.__   
+  __![alt text](https://github.com/jjanscode/Machine-Learning-Stocks/blob/main/Github%20Machine%20Learning%20Images/Max%20Down%20Lasat%20Four%20Features.png)
+  Figure 15. Feature importance sensitivity sweep for last four machine learning model features across maximum weekly downwards price movement classifier thresholds.__    
+ 
+ ## Implementation and Performance
+The best methods for assessing forward looking predictions made by trained forest algorithms and making purchasing decisions is being investigated. The current approach integrates predictions made from 16 machine learning algorithms separately trained on differently thresholded classifier data into a scoring scheme (Table 3). In this scoring scheme, the 16 different algorithms are fed a matrix of stocks with the associated feature data and are asked to make a prediction on each stock. The score for a stock initializes at a value of zero, if a given machine learning algorithm predicts the stock to be above the classifier threshold it was trained on, points equal to the testing accuracy of the given algorithm are added to the stock score. This process is repeated for all 16 algorithms and all stocks in the weekly dataset. All of the machine learning stock scores are then normalized by the maximum possible score to produce a normalized percentile for easy week to week comparison. 
   __![alt text](https://github.com/jjanscode/Machine-Learning-Stocks/blob/main/Github%20Machine%20Learning%20Images/Points%20Scheme.png)  
 Table 3. Summary of machine learning based scoring system, associated code file: Machine Learning Scoring.ipynb__  
    
