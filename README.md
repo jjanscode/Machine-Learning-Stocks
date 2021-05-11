@@ -63,7 +63,7 @@ Figure 7. Median minimum price movement classifier threshold sensitivity sweep u
    
   
    
-From this sensitivity test, it was determined that machine learning models trained on binary classifier thresholds between 0-4% and 17+% produced acceptable accuracies, whil not badly overfitting the data given the relatively small differences in training and testing accuracy (Figure 6, Figure 7).
+From this sensitivity test, it was determined that machine learning models trained on binary classifier thresholds between 0-5% and 14+% produced acceptable accuracies, while not badly overfitting the data given the relatively small differences in training and testing accuracy (Figure 6, Figure 7).
 
 ## Feature Analysis
 To gain further insight into the importance of the various features included in the machine learning model, a sensitivity sweep of machine learning feature importance scores was performed for both the Max Up and Max Down classifier sets. A feature importance score is a decimal number between 0 and 1 produced by the machine learning model that indicates how important a given feature is in discriminating between the different groups of the classifier data. The feature importance scores for all of the features sum up to 1, with higher scores indiciating more importance. For this sensitivity test, each machine learning algorithm was trained 100 times with different random seeds each iteration, and the median feature importance scores were selected.   
@@ -85,25 +85,44 @@ Figure 12. Feature importance sensitivity sweep for first four machine learning 
   __![alt text](https://github.com/jjanscode/Machine-Learning-Stocks/blob/main/Github%20Machine%20Learning%20Images/Max%20Down%20Third%20Four%20Features.png)
  Figure 14. Feature importance sensitivity sweep for third four machine learning model features across maximum weekly downwards price movement classifier thresholds.__   
   __![alt text](https://github.com/jjanscode/Machine-Learning-Stocks/blob/main/Github%20Machine%20Learning%20Images/Max%20Down%20Lasat%20Four%20Features.png)
-  Figure 15. Feature importance sensitivity sweep for last four machine learning model features across maximum weekly downwards price movement classifier thresholds.__    
+  Figure 15. Feature importance sensitivity sweep for last four machine learning model features across maximum weekly downwards price movement classifier thresholds.__ 
+  __![alt text](https://github.com/jjanscode/Machine-Learning-Stocks/blob/main/Github%20Machine%20Learning%20Images/Average%20max%20up%20features%20importances.png)  
+  Figure 16. Average feature importance across maximum upwards price movement classifier thresholds between 1% and 41%. Error bars represent one standard deviation in feature importance value for a given feature across this range.__  
+    __![alt text](https://github.com/jjanscode/Machine-Learning-Stocks/blob/main/Github%20Machine%20Learning%20Images/Average%20max%20down%20feature%20importances.png)  
+  Figure 17. Average feature importance across maximum downwards price movement classifier thresholds between 1% and 41%. Error bars represent one standard deviation in feature importance value for a given feature across this range__  
+   
+  
+  
  
  ## Implementation and Performance
-The best methods for assessing forward looking predictions made by trained forest algorithms and making purchasing decisions is being investigated. The current approach integrates predictions made from 16 machine learning algorithms separately trained on differently thresholded classifier data into a scoring scheme (Table 3). In this scoring scheme, the 16 different algorithms are fed a matrix of stocks with the associated feature data and are asked to make a prediction on each stock. The score for a stock initializes at a value of zero, and if a given machine learning algorithm predicts the stock to be above the classifier threshold it was trained on, points equal to the testing accuracy of the given algorithm are added to the stock score. This process is repeated for all 16 algorithms and all stocks in the weekly dataset. All of the machine learning stock scores are then normalized by the maximum possible score to produce a normalized percentile for easy week to week comparison.  
+The best methods for assessing forward looking predictions made by trained forest algorithms and making purchasing decisions is being investigated. The current approach integrates predictions made from 16 machine learning algorithms separately trained on differently thresholded classifier data into a scoring scheme (Table 3). In this scoring scheme, the 16 different algorithms are fed a matrix of stocks with the associated feature data and are asked to make a prediction on each stock. The score for a stock initializes at a value of zero, and if a given machine learning algorithm predicts the stock to be above the classifier threshold it was trained on, points equal to the testing accuracy of the given algorithm are added to the stock score. This process is repeated for all 16 algorithms and all stocks in the weekly dataset. All of the machine learning stock scores are then normalized by the maximum possible score to produce a normalized percentile for easy week to week comparison (Figure 18).  
   __![alt text](https://github.com/jjanscode/Machine-Learning-Stocks/blob/main/Github%20Machine%20Learning%20Images/Points%20Scheme.png)  
 Table 3. Summary of machine learning based scoring system, associated code file: Machine Learning Scoring.ipynb__  
 
-   
-   
-   
+  __![alt text](https://github.com/jjanscode/Machine-Learning-Stocks/blob/main/Github%20Machine%20Learning%20Images/Labeled%20Output.png)  
+Figure 18. Output from machine learning scoring system. Associated code file: Machine Learning Scoring.ipynb__  
 
-Additional scoring schemes are expected to incorporate factors for overfitting, and different permutations of rules for adding/subtracting/no action points scoring. These scoring schemes will undergo an evaluation period of a month, during which the machiune learning percentile prediction versus weekly stock performance for each scheme will be evaluated. Trends identified during this period will be used to to formulate a rules based approach for buying and selling equities. Different rules based approaches will be evaluated using the yfinance Python module on minutely price data to simulate deploying the buying and selling paradigm in real time (Figure 8).  
- __![alt text](https://github.com/jjanscode/Machine-Learning-Stocks/blob/main/Github%20Machine%20Learning%20Images/Entire%20Block%20Diagram.png)  
-Figure 8. Summary of the entire data collection and evaluation process.__  
+Typically each week, there will be a large grouping of stocks with identical scores (Boxed, Figure 19), with a few outliers having higher scores than the rest of the group (Figure 19, Circled.) All of these intraweek outlier stocks were considered for weekly investement and fed to a variety of buying and  selling schemes using minutely regular market hours data from yfinance to simulate the performance of implementing a passive buying a selling scheme on machine learning selected stocks. Further work will be done to investigate a more statistically rigorous intraweek selection method, however initial results show some promise, with an 11.16% median weekly maximum upwards price movement across a population of n=47 machine learning selected stocks between the weeks of 02/22/21 and 05/02/21-- an almost 40% increase from the 8.00% median weekly maximum upwards price movement across the n=1758 parent data set. 
 
- 
-In addition to this ongoing work, planned future work will include the following investigations.  
-  + Perform sensitivity analysis of feature importance scores across binary classifier thresholds for both classifier sets, investigate the removal of features determined to be universally unimportant.       
-  + Continue working to automate all features of data collection process.   
-  + Investigate establishing stricter stock filtering criteria so as to create a more homogenous dataset. Investigate the impact of this on machine learning model performance. 
-  + Revisit evaluating the performance of the random forest algorithm on multiclass labeled data. 
+  __![alt text](https://github.com/jjanscode/Machine-Learning-Stocks/blob/main/Github%20Machine%20Learning%20Images/Drawn%20on%20Labeled%20Output.png)    
+Figure 19. Illustration of stocks selected for weekly investement (circled). Associated code file: Machine Learning Scoring.ipynb__    
+
+
+
+
+
+ __![alt text](https://github.com/jjanscode/Machine-Learning-Stocks/blob/main/Github%20Machine%20Learning%20Images/Static%20Limits.png)    
+Figure 20. Performance of a 100 dollar investment using various take profit/take loss schemes.__  
+
+
+ __![alt text](https://github.com/jjanscode/Machine-Learning-Stocks/blob/main/Github%20Machine%20Learning%20Images/Trailing%20Stop%20loss%20schemes.png)   
+Figure 21. Performance of a 100 dollar investment using various take profit/take loss schemes.__    
+
+
+ __![alt text](https://github.com/jjanscode/Machine-Learning-Stocks/blob/main/Github%20Machine%20Learning%20Images/Trailing%20stop%20loss%20take%20profit%20scheme.png)   
+Figure 22. Performance of a 100 dollar investment using various take profit/take loss schemes.__    
+
+
+
+   
 
