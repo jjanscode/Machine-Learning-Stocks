@@ -25,29 +25,28 @@ __Table 1. Summary of features included in machine learning model.__
   
   
 ## Classifier Data
- At the end of the trading week, two separate groups of classifier data were collected--  maximum price movement above Monday opening price for a given stock (maximum price movement classifier), and the minimum price movement below Monday opening price for a given stock (minimum price movement classifier) (Table 2). The classifiers were then matched with the associated 16 features and were used to train various different machine learning algorithms. 
+ At the end of the trading week, two separate groups of classifier data were collected--  maximum price movement above Monday opening price for a given stock (maximum upwards price movement classifier), and the maximum price movement below Monday opening price for a given stock (maximum downwards price movement classifier) (Table 2). The classifiers were then matched with the associated 16 features and were used to train various different machine learning algorithms. 
 
  ![alt text](https://github.com/jjanscode/Machine-Learning-Stocks/blob/main/Github%20Machine%20Learning%20Images/Classifier%20Table.png)  
 __Table 2. Summary of classifier sets included in machine learning model.__  
   
   
-The microcap and small cap stocks mentioned Sunday night by the population of day traders proved to have large weekly price movements. The median maximum weekly price movement above Monday opening price was 8.00% (Figure 3) and the median maximum weekly price movement below Monday opening price was 10.23% (Figure 4) across an n = 1758 dataset collected between 7/26/2020 and 4/25/2021 (source file:'Machine Learning Set V2.xlsx').  
+The microcap and small cap stocks mentioned Sunday night by the population of day traders proved to have large weekly price movements. The median maximum weekly price movement above Monday opening price was 8.00% (Figure 3) and the median maximum weekly price movement below Monday opening price was 10.23% (Figure 4) across an n = 1758 dataset collected between 7/26/2020 and 4/25/2021 (source file:'Machine Learning Set V3.xlsx').  
   
 
 ![alt text](https://github.com/jjanscode/Machine-Learning-Stocks/blob/main/Github%20Machine%20Learning%20Images/Max%20Up%20Classifiers.png)   
-__Figure 3. Weekly maximum price classifier histogram for data set. Calculated with the file 'DataHistograms.ipynb'.  
+__Figure 3. Weekly maximum upwards price movement classifier histogram for data set. Calculated with the file 'DataHistograms.ipynb'.  
 Note: 40% bin represents all weekly classifiers that are 40% or greater.__
 
 ![alt text](https://github.com/jjanscode/Machine-Learning-Stocks/blob/main/Github%20Machine%20Learning%20Images/Max%20Down%20Classifiers.png)   
-__Figure 4. Weekly minimum classifier histogram for data set. Calculated with the file 'DataHistograms.ipynb'.  
-Note: 40% bin represents all weekly classifiers that are 40% or greater.__  
+__Figure 4. Weekly maximum downwards price movement classifier histogram for data set. Calculated with the file 'DataHistograms.ipynb'.__  
   
   
   
   
 ## Machine Learning Algorithm Performance
 Upon investigation of various machine learning algorithms available in the Sci-Kit Learn Python package, it was determined that a random forest algorithm performed the best at both accuractely classifying the data and minimizing overfitting.  
-The random forest algorithm deployed incorporated n=100 estimators. To control for overfitting, only 8 out of the 16 features from the data set ('Machine Learning Set V2.xlsx') were used to train a given estimator, and the minimum number of samples allowed in a leaf of the tree was set to 15.  
+The random forest algorithm deployed incorporated n=100 estimators. To control for overfitting, only 8 out of the 16 features from the data set ('Machine Learning Set V3.xlsx') were used to train a given estimator, and the minimum number of samples allowed in a leaf of the tree was set to 15.  
 In order to systematically determine the performance of the random forest algorithm, a sensitivity sweep was performed across the two classifiers (maximum price movement and minimum price movement).  
 In this sensitivity study, 18 different classifier thresholds between 0 and 41% were established for both the maximum price movement and minimum price movement classifiers. A binary classification system was used to label the data at each threshold, with a '1' indicating the classifier for the data point was above the classifier threshold, and a '0' indicating the classifier for the data point was below the classifier threshold.  
 To establish a robust metric of algorithm performance at a given classifier level, the random forest algorithm was trained 100 separate times using a different random seed to split the data set into training and testing groups. The training and testing accuracy of the algorithm across the 100 iterations was tracked (Figure 5).  
