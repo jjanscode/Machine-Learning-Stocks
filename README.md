@@ -141,7 +141,7 @@ Per the take profit/trailing stop loss schemes (Figure 22), stocks that rise a g
  __![alt text](https://github.com/jjanscode/Machine-Learning-Stocks/blob/main/Github%20Machine%20Learning%20Images/Trailing%20stop%20loss%20take%20profit%20scheme.png)   
 Figure 22. Performance of a 100 dollar investment using various take profit/trailing stop loss schemes.__    
 
-Per the results, moderate success can be obtained by implementing some of these passive schemes, with the 10% profit 10% trailing stop loss scheme demonstrating a 34% return over the investigated 11 week time frame, with a maximum week to week loss of 2.14%. Future work will look to improve upon these results by investigating using machine learning to generate buy and sell points unique to a given stock as opposed to a one size fits all approach.  
+Per the results, moderate success can be obtained by implementing some of these passive schemes, with the 10% profit 10% trailing stop loss scheme demonstrating a 34% return over the investigated 11 week time frame, with a maximum week to week loss of 7.4%. Future work will look to improve upon these results by investigating using machine learning to generate buy and sell points unique to a given stock as opposed to a one size fits all approach.  
 
 
 
